@@ -1,0 +1,36 @@
+{% extends 'main/layout.html'  %}
+
+{% block title %}Справка{% endblock %}
+
+{% block content %}
+    <div class="feature">
+
+        {% if data %}
+            <table>
+                <tr>
+                    <td><p>Неотсортированные данные</p></td>
+                    <td><p>Отсортированные данные</p></td>
+                </tr>
+                {% for el in data %}
+                    <tr>
+                        <td>{{el.oldData}}</td>
+                        {% if el.sortData %}
+                            <td>{{el.sortData}}</td>
+                        {% else %}
+                            <td>Не отсортировано</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h1>Здесь будет ваша история операций</h1>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <button class="button-tohome", type="submit">Очистить историю</button>
+        </form>
+
+
+    </div>
+
+{% endblock %}
