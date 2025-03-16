@@ -1,0 +1,32 @@
+{% extends 'main/layout.html'  %}
+
+{% block title %}Справка{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <form method="post">
+
+            {% csrf_token %}
+            {{ form.oldData }}
+            <span>{{ error }}</span>
+            <button class="button-tohome", type="submit">! отсортировать !</button>
+        </form>
+
+        {% if data %}
+
+            <h1>! ваши данные !</h1>
+            {% for el in data %}
+                <p>{{el.oldData}}</p>
+                <br>
+                <h1>! отсортированные данные !</h1>
+                {% if el.sortData %}
+                    <p>{{el.sortData}}</p>
+                {% else %}
+                    <p>! не отсортировано !</p>
+                {% endif %}
+            {% endfor%}
+        {% endif %}
+
+    </div>
+
+{% endblock %}
